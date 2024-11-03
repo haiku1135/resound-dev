@@ -36,3 +36,17 @@ export const PasswordSchema = z.object({
   message: "新しいパスワードと確認用パスワードが一致しません。",
   path: ["confirmation"],
 });
+
+export const ProfileSchema = z.object({
+  name: z.string().min(1, { message: "名前を入力してください" }),
+  introduce: z.string().optional(),
+});
+
+export const EmailSchema = z.object({
+  email: z.string().email({message: "メールアドレスを入力してください"}),
+});
+
+export const BlogSchema = z.object({
+  title: z.string().min(1, {message: "タイトルを入力してください"}),
+  content: z.string().min(1, {message: "内容を入力してください"}),
+});
