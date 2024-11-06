@@ -21,7 +21,6 @@ import { newBlog } from "@/actions/blog";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import FormError from "@/components/auth/FormError";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 
 interface BlogNewProps {
@@ -30,7 +29,7 @@ interface BlogNewProps {
 
 const BlogNew = ({ userId }: BlogNewProps) => {
   const router = useRouter();
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [isPending, startTransition] = useTransition();
   const [imageUpload, setImageUpload] = useState<ImageListType>([]);
 

@@ -1,4 +1,3 @@
-import { DivideCircle } from "lucide-react"
 
 const ResetPasswordSuccessPage = () => {
   return (
