@@ -1,4 +1,5 @@
 "use client";
+// "use client"ディレクティブを使用したクライアントサイドコンポーネント
 
 import { useState, useTransition } from "react";
 import { z } from "zod";
@@ -22,7 +23,15 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import ImageUploading, { ImageListType } from "react-images-uploading";
+import MusicSearch from "@/components/music/MusicSearch";
 
+interface MyTrackObjectSimplified extends SpotifyApi.TrackObjectSimplified {
+  album: {
+    images: {
+      url: string;
+    }[];
+  };
+}
 interface BlogNewProps {
   userId: string;
 };
@@ -32,7 +41,12 @@ const BlogNew = ({ userId }: BlogNewProps) => {
   const [, setError] = useState("");
   const [isPending, startTransition] = useTransition();
   const [imageUpload, setImageUpload] = useState<ImageListType>([]);
+  const [selectedTrack, setSelectedTrack] = useState<MyTrackObjectSimplified | null>(null);
 
+   // 曲選択のハンドラー関数を定義
+   const handleTrackSelect = (track: MyTrackObjectSimplified | null) => {
+    setSelectedTrack(track);
+  };
   const form = useForm<z.infer<typeof BlogSchema>>({
     resolver: zodResolver(BlogSchema),
     defaultValues: {
@@ -53,9 +67,18 @@ const BlogNew = ({ userId }: BlogNewProps) => {
           base64Image = imageUpload[0].dataURL;
         }
 
+        const spotifyTrack = selectedTrack ? {
+          id: selectedTrack.id,
+          name: selectedTrack.name,
+          artist: selectedTrack.artists[0].name,
+          imageUrl: selectedTrack.album?.images[0].url,
+          previewUrl: selectedTrack.preview_url || '',
+        } : undefined;
+
         const res = await newBlog({
           ...values,
           base64Image,
+          spotifyTrack,
           userId,
         });
 
@@ -185,7 +208,13 @@ const BlogNew = ({ userId }: BlogNewProps) => {
               </FormItem>
             )}
           />
-
+          <div className="space-y-3">
+            <label className="font-bold">音楽を選択</label>
+            <MusicSearch
+              onSelect = {handleTrackSelect}
+              selectedTrack={selectedTrack}
+            />
+          </div>
           <div className="text-center">
             <Button
               type="submit"

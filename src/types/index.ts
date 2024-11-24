@@ -11,6 +11,11 @@ export interface BlogType {
   content: string;
   user_id: string;
   image_url: string | null;
+  spotify_track_id: string | null;
+  spotify_track_name: string | null;
+  spotify_track_artist: string | null;
+  spotify_track_image: string | null;
+  spotify_track_preview: string | null;
   updated_at: string;
   created_at: string;
 };

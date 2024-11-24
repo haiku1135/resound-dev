@@ -6,8 +6,17 @@ import { z } from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { decode } from "base64-arraybuffer";
 
+interface SpotifyTrack {
+  id: string;
+  name: string;
+  artist: string;
+  imageUrl: string;
+  previewUrl: string;
+}
+
 interface newBlogProps extends z.infer<typeof BlogSchema> {
   base64Image: string | undefined;
+  spotifyTrack?: SpotifyTrack;
   userId: string;
 };
 
@@ -52,12 +61,17 @@ export const newBlog = async (values: newBlogProps) => {
       image_url = urlData.publicUrl;
     }
 
-    // ブログ新規作成
+    // ブログ新規作成（Spotify情報を追加）
     const { error: insertError } = await supabase.from("blogs").insert({
       title: values.title,
       content: values.content,
       image_url,
       user_id: values.userId,
+      spotify_track_id: values.spotifyTrack?.id,
+      spotify_track_name: values.spotifyTrack?.name,
+      spotify_track_artist: values.spotifyTrack?.artist,
+      spotify_track_image: values.spotifyTrack?.imageUrl,
+      spotify_track_preview: values.spotifyTrack?.previewUrl,
     });
 
     // エラーチェック
@@ -74,6 +88,7 @@ interface editBlogProps extends z.infer<typeof BlogSchema> {
   blogId: string;
   imageUrl: string | null;
   base64Image: string | undefined;
+  spotifyTrack?: SpotifyTrack;
   userId: string;
 };
 
@@ -126,13 +141,18 @@ export const editBlog = async (values: editBlogProps) => {
       image_url = urlData.publicUrl;
     }
 
-    // ブログ編集
+    // ブログ編集（Spotify情報を追加）
     const { error: updateError } = await supabase
       .from("blogs")
       .update({
         title: values.title,
         content: values.content,
         image_url,
+        spotify_track_id: values.spotifyTrack?.id,
+        spotify_track_name: values.spotifyTrack?.name,
+        spotify_track_artist: values.spotifyTrack?.artist,
+        spotify_track_image: values.spotifyTrack?.imageUrl,
+        spotify_track_preview: values.spotifyTrack?.previewUrl,
       })
       .eq("id", values.blogId);
 

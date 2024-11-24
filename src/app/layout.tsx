@@ -14,8 +14,8 @@ const mPlus1 = M_PLUS_1({
 
 // メタデータの指定
 export const metadata: Metadata = {
-  title: "Supabase認証ブログ",
-  description: "Supabase認証ブログ",
+  title: "RESOUND",
+  description: "RESOUND",
 };
 
 // viewportの指定

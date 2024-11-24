@@ -76,7 +76,24 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
         <div className="leading-relaxed break-words whitespace-pre-wrap">
           {blog.content}
         </div>
-
+        {blog.spotify_track_id && (
+          <div className="space-y-3">
+            <h3>音楽</h3>
+            <p>曲名:{blog.spotify_track_name}</p>
+            <p>アーティスト:{blog.spotify_track_artist}</p>
+            {blog.spotify_track_image && (
+              <Image 
+                src={blog.spotify_track_image} 
+                alt="track jacket"
+                width={300} 
+                height={300} 
+              />
+            )}
+            {blog.spotify_track_preview && (
+              <audio src={blog.spotify_track_preview} controls />
+            )}
+          </div>
+        )}
         {isMyBlog && (
           <div className="flex items-center justify-end space-x-3">
             <Link href={`/blog/${blog.id}/edit`}>
