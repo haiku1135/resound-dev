@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "gnspaurfwwhgmuorfldx.supabase.co",
       },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',  // Spotifyの画像用
+      },
     ],
   },
   experimental: {
