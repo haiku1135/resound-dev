@@ -16,6 +16,9 @@ const mPlus1 = M_PLUS_1({
 export const metadata: Metadata = {
   title: "RESOUND",
   description: "RESOUND",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 // viewportの指定

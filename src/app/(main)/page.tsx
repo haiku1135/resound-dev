@@ -27,7 +27,7 @@ const MainPage = async () => {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid lg:grid-cols-3 gap-5 md:grid-cols-2 sm:grid-cols-1">
         {blogsData.map((blog) => {
           return <BlogItem key={blog.id} blog={blog} />
         })}

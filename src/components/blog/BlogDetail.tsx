@@ -57,22 +57,24 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-5">
+    <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-5">
       <div className="col-span-2 space-y-5">
         <div className="text-sm text-gray-500">
           {format(new Date(blog.updated_at), "yyyy/MM/dd HH:mm")}
         </div>
         <div className="font-bold text-2xl">{blog.title}</div>
-        <div>
-          <Image
-            src={blog.image_url || "/noImage.png"}
-            className="rounded object-cover"
-            alt="image"
-            width={768}
-            height={432}
-            priority
-          />
-        </div>
+        {blog.image_url && (
+          <div>
+            <Image
+              src={blog.image_url || "/noImage.png"}
+              className="rounded object-cover"
+              alt="image"
+              width={768}
+              height={432}
+              priority
+            />
+          </div>
+        )}
         <div className="leading-relaxed break-words whitespace-pre-wrap">
           {blog.content}
         </div>
