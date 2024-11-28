@@ -54,7 +54,7 @@ export default function MusicSearch({ onSelect, selectedTrack }: MusicSearchProp
           検索
         </Button>
       </div>
-      <div className="grid grid-cols-3 gap-4 mt-4">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
         {trackList.map((track) => (
           <button 
             key={track.id} 
