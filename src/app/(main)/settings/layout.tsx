@@ -39,8 +39,8 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
               asChild
               key={index}
               className={cn(
-                "w-full justify-start font-bold",
-                pathname === item.href && "bg-gray-100"
+                "w-full justify-start font-bold bg-gray-500",
+                pathname === item.href && "bg-primary text-white"
               )}
             >
               <Link href={item.href}>
