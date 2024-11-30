@@ -33,7 +33,7 @@ const Navigation = ({ user }: NavigationProps) => {
         </Link>
 
         <div className="text-sm font-bold flex items-center space-x-2">
-          <Link href="https://qk6ir2ovv2jnfq4stenojx5kfgdhe1ly.vercel.app/" target="_blank">
+          <Link href="https://f2kkkk1iop34tslp5tb1vnxgsco8mdlv.vercel.app/" target="_blank">
             Resoundとは?
           </Link>
           {user ? (
