@@ -19,7 +19,7 @@ const MainPage = async () => {
         )
       `
     )
-    .order("updated_at", { ascending: false });
+    .order("created_at", { ascending: false });
 
   if (!blogsData || error) {
     return <div className="text-center">ブログが投稿されていません。</div>
