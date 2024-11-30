@@ -32,7 +32,7 @@ const Navigation = ({ user }: NavigationProps) => {
           Resound
         </Link>
 
-        <div className="text-sm font-bold flex items-center space-x-5">
+        <div className="text-sm font-bold flex items-center space-x-2">
           <Link href="https://qk6ir2ovv2jnfq4stenojx5kfgdhe1ly.vercel.app/" target="_blank">
             Resoundとは?
           </Link>
