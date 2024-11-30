@@ -31,7 +31,7 @@ const BlogItem = ({ blog }: BlogItemProps) => {
         </div>
         <div className="p-3 space-y-2">
           <div className="text-gray-500 text-xs">
-            {format(new Date(blog.updated_at), "yyyy/MM/dd HH:mm")}
+            {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
           </div>
           <div className="font-bold">{blog.title}</div>
           <div className="flex items-center space-x-3">

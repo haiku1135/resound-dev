@@ -60,7 +60,7 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
     <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-5">
       <div className="col-span-2 space-y-5">
         <div className="text-sm text-gray-500">
-          {format(new Date(blog.updated_at), "yyyy/MM/dd HH:mm")}
+          {format(new Date(blog.created_at), "yyyy/MM/dd HH:mm")}
         </div>
         <div className="font-bold text-2xl">{blog.title}</div>
         {blog.image_url && (
