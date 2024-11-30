@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useTransition } from "react"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
+import { useState, useTransition } from "react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Form,
@@ -14,20 +14,20 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ChevronRight, Loader2, EyeOffIcon, EyeIcon } from "lucide-react"
-import { LoginSchema } from "@/schemas"
-import { login } from "@/actions/auth"
-import { useRouter } from "next/navigation"
+import { ChevronRight, Loader2, EyeOffIcon, EyeIcon } from "lucide-react";
+import { LoginSchema } from "@/schemas";
+import { login } from "@/actions/auth";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast"
-import FormError from "@/components/auth/FormError"
-import Link from "next/link"
+import FormError from "@/components/auth/FormError";
+import Link from "next/link";
 
 // ログイン
 const Login = () => {
-  const router = useRouter()
-  const [error, setError] = useState("")
-  const [passwordVisibility, setPasswordVisibility] = useState(false)
-  const [isPending, startTransition] = useTransition()
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -35,11 +35,11 @@ const Login = () => {
       email: "",
       password: "",
     },
-  })
+  });
 
   // 送信
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError("")
+    setError("");
 
     startTransition(async () => {
       try {
@@ -48,19 +48,19 @@ const Login = () => {
         })
 
         if (res?.error) {
-          setError(res.error)
-          return
+          setError(res.error);
+          return;
         }
 
-        toast.success("ログインしました")
-        router.push("/")
-        router.refresh()
+        toast.success("ログインしました");
+        router.push("/");
+        router.refresh();
       } catch (error) {
-        console.error(error)
-        setError("エラーが発生しました")
+        console.error(error);
+        setError("エラーが発生しました");
       }
-    })
-  }
+    });
+  };
 
   return (
     <div className="w-[500px] p-5 rounded-xl border">
