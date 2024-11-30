@@ -11,6 +11,10 @@ interface MyTrackObjectSimplified extends SpotifyApi.TrackObjectSimplified {
       url: string;
     }[];
   };
+  external_urls: {
+    spotify: string;
+  };
+  uri: string;
 }
 interface MusicSearchProps {
   onSelect: (track: MyTrackObjectSimplified | null) => void;

@@ -73,6 +73,7 @@ const BlogNew = ({ userId }: BlogNewProps) => {
           artist: selectedTrack.artists[0].name,
           imageUrl: selectedTrack.album?.images[0].url,
           previewUrl: selectedTrack.preview_url || '',
+          url: selectedTrack.external_urls.spotify,
         } : undefined;
 
         const res = await newBlog({

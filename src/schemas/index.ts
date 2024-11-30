@@ -55,5 +55,6 @@ export const BlogSchema = z.object({
     artist: z.string(),
     imageUrl: z.string(),
     previewUrl: z.string(),
+    url: z.string(),
   }).optional(),
 });

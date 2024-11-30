@@ -16,6 +16,7 @@ export interface BlogType {
   spotify_track_artist: string | null;
   spotify_track_image: string | null;
   spotify_track_preview: string | null;
+  spotify_track_url: string | null;
   updated_at: string;
   created_at: string;
 };

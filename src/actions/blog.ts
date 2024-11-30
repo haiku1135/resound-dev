@@ -12,6 +12,7 @@ interface SpotifyTrack {
   artist: string;
   imageUrl: string;
   previewUrl: string;
+  url: string;
 }
 
 interface newBlogProps extends z.infer<typeof BlogSchema> {
@@ -72,6 +73,7 @@ export const newBlog = async (values: newBlogProps) => {
       spotify_track_artist: values.spotifyTrack?.artist,
       spotify_track_image: values.spotifyTrack?.imageUrl,
       spotify_track_preview: values.spotifyTrack?.previewUrl,
+      spotify_track_url: values.spotifyTrack?.url,
     });
 
     // エラーチェック
