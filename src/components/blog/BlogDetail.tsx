@@ -26,7 +26,6 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
   const router = useRouter();
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
-  console.log(blog);
   const handleDelete = async () => {
     if (!window.confirm("本当に削除しますか？")) {
       return;
