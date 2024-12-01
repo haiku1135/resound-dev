@@ -39,8 +39,9 @@ export const updateProfile = async (values: updateProfileProps) => {
       // ファイルをアップロード
       const { error: storageError } = await supabase.storage
       .from("profiles")
-      .upload(`${values.profile.id}/${fileName}`, decode(base64Data), {
+      .upload(`avatars/${fileName}`, decode(base64Data), {
         contentType,
+        upsert: true
       });
 
       if (storageError) {
@@ -53,15 +54,15 @@ export const updateProfile = async (values: updateProfileProps) => {
         // 古い画像を削除
         await supabase.storage
           .from("profiles")
-          .remove([`${values.profile.id}/${fileName}`]);
+          .remove([`avatars/${fileName}`]);
       }
       
       // 画像のURLを取得
       const { data: urlData } = await supabase.storage
         .from("profiles")
-        .getPublicUrl(`${values.profile.id}/${fileName}`);
+        .getPublicUrl(`avatars/${fileName}`);
       
-      avatar_url = urlData.publicUrl;
+      avatar_url = urlData?.publicUrl;
     }
 
     // プロフィールアップデート
