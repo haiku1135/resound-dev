@@ -4,12 +4,13 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { BlogType } from "@/types";
 import { format } from "date-fns";
-import { FilePenLine, Loader2, Trash2 } from "lucide-react";
+import { FilePenLine, Loader2, Trash2, Share } from "lucide-react";
 import FormError from "@/components/auth/FormError";
 import Image from "next/image";
 import Link from "next/link";
 import { deleteBlog } from "@/actions/blog"
 import toast from "react-hot-toast";
+
 
 interface BlogDetailProps {
   blog: BlogType & {
@@ -53,6 +54,10 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
         setError("ブログ削除に失敗しました。");
       }
     });
+  };
+  const handleShare = () => {
+    const url = `https://x.com/intent/tweet?text=${encodeURIComponent(blog.title)}&url=${encodeURIComponent(window.location.href)}`;
+    window.open(url, '_blank');
   };
 
   return (
@@ -111,6 +116,13 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
         )}
         {isMyBlog && (
           <div className="flex items-center justify-end space-x-3">
+            <button
+              className="cursor-pointer"
+              onClick={handleShare}
+              aria-label="Xでシェア"
+            >
+              <Share className="w-6 h-6 text-gray-600 hover:text-gray-800" />
+            </button>
             <Link href={`/blog/${blog.id}/edit`}>
               <FilePenLine className="w-6 h-6" />
             </Link>
@@ -127,6 +139,7 @@ const BlogDetail = ({ blog, isMyBlog }: BlogDetailProps) => {
             </button>
           </div>
         )}
+        
 
         <FormError message={error} />
       </div>
